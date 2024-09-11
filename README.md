@@ -1,11 +1,11 @@
 # SweetBites Bakery
 
-Proyek ini adalah platform e-commerce yang dibuat menggunakan Django, memungkinkan pengguna untuk melihat dan membeli produk seperti kue dan pastry. Berikut adalah langkah-langkah implementasi proyek ini secara step-by-step, serta penjelasan mengenai konsep-konsep kunci terkait Django, Git, dan ORM.
+Proyek ini adalah platform e-commerce yang dibuat menggunakan Django, memungkinkan pengguna untuk melihat dan membeli produk seperti kue dan pastry. Berikut adalah langkah-langkah implementasi proyek ini secara step-by-step, serta penjelasan mengenai konsep-konsep terkait Django, Git, dan ORM.
 
 ## Tautan Deployment
 Aplikasi telah di-deploy di PWS dan dapat diakses melalui tautan berikut:
 
-[SweetBites Bakery di PWS](http://username-anda-sweetbites.pbp.cs.ui.ac.id)
+[SweetBites Bakery](http://amirah-rizkita-sweetbites.pbp.cs.ui.ac.id)
 
 ---
 
