@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-ugngo1f2($v_uqu4uq@9l)s5*g@h-*l^&6u(!207+_3h&=%2h%
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["localhost", "127.0.0.1", "amirah-rizkita-sweetbites.pbp.cs.ui.ac.id"]
+ALLOWED_HOSTS = ["localhost", "127.0.0.1", "amirah-rizkita-sweetbites.pbp.cs.ui.ac.id", "https://amirah.rizkita:emjeAoUpmA9438ef3AA2rSOM_T4ivJym@pbp.cs.ui.ac.id/amirah.rizkita/sweetbites"]
 
 
 # Application definition
@@ -55,7 +55,7 @@ ROOT_URLCONF = 'e_commerce.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'], 
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
