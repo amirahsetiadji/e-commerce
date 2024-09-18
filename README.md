@@ -1,3 +1,4 @@
+# TUGAS 2
 # SweetBites Bakery
 
 Proyek ini adalah platform e-commerce yang dibuat menggunakan Django, memungkinkan pengguna untuk melihat dan membeli produk seperti kue dan pastry. Berikut adalah langkah-langkah implementasi proyek ini secara step-by-step, serta penjelasan mengenai konsep-konsep terkait Django, Git, dan ORM.
@@ -61,5 +62,34 @@ Django sering dipilih sebagai framework awal untuk pembelajaran pengembangan per
 ## Mengapa Model pada Django Disebut Sebagai ORM?
 
 ORM (Object-Relational Mapping) pada Django memungkinkan pengembang untuk berinteraksi dengan database menggunakan objek Python, tanpa harus menulis query SQL secara langsung. Setiap model Django merepresentasikan tabel dalam database, dan kita dapat melakukan operasi CRUD (Create, Read, Update, Delete) menggunakan metode Python yang sederhana. ORM mengabstraksi interaksi dengan database sehingga lebih mudah dipahami dan digunakan oleh pengembang.
+
+
+## TUGAS 3
+## Pertanyaan dan Jawaban
+
+### 1. Mengapa kita memerlukan data delivery dalam pengimplementasian sebuah platform?
+Data delivery memungkinkan server mengirimkan data ke klien secara efisien, menjaga aplikasi tetap dinamis dan interaktif tanpa perlu memuat ulang halaman.
+
+### 2. Menurutmu, mana yang lebih baik antara XML dan JSON? Mengapa JSON lebih populer dibandingkan XML?
+JSON lebih baik untuk aplikasi modern karena lebih ringan, mudah dibaca, dan diproses oleh browser, sementara XML lebih kompleks.
+
+### 3. Jelaskan fungsi dari method is_valid() pada form Django dan mengapa kita membutuhkan method tersebut?
+`is_valid()` memeriksa apakah data yang dimasukkan ke dalam form sesuai dengan aturan yang telah ditetapkan. Ini penting untuk validasi sebelum menyimpan data ke database.
+
+### 4. Mengapa kita membutuhkan csrf_token saat membuat form di Django? Apa yang dapat terjadi jika kita tidak menambahkan csrf_token pada form Django? Bagaimana hal tersebut dapat dimanfaatkan oleh penyerang?
+`csrf_token` mencegah serangan CSRF. Tanpa itu, penyerang bisa memaksa pengguna yang telah login untuk mengirim permintaan tanpa sepengetahuan mereka.
+
+## Screenshot Postman
+## Screenshot Hasil XML
+
+![Screenshot 1](images/Screenshot1.png)
+
+![Screenshot 2](images/Screenshot2.png)
+
+## SCreenshot Hasil JSON
+
+![Screenshot 1](images/Screenshot3.png)
+
+![Screenshot 2](images/Screenshot4.png)
 
 
