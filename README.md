@@ -8,7 +8,7 @@ Aplikasi belum di-deploy di PWS
 
 ---
 
-## Implementasi Step-by-Step
+1. ## Implementasi Step-by-Step
 
 1. **Membuat Proyek Django**:
    - Saya memulai proyek Django baru menggunakan perintah `django-admin startproject e-commerce`. Perintah ini membuat struktur proyek dasar yang mencakup `settings.py`, `urls.py`, dan beberapa file konfigurasi lainnya.
@@ -92,8 +92,8 @@ JSON lebih baik untuk aplikasi modern karena lebih ringan, mudah dibaca, dan dip
 
 ![Screenshot 2](images/Screenshot4.png)
 
-## TUGAS 4
 
+## TUGAS 4
 ### 1. Apa perbedaan antara `HttpResponseRedirect()` dan `redirect()`?
 `HttpResponseRedirect()` dan `redirect()` adalah dua fungsi yang digunakan untuk mengarahkan ulang pengguna ke URL tertentu, tetapi ada sedikit perbedaan cara penggunaannya. `HttpResponseRedirect()` memerlukan URL secara eksplisit sebagai argumen. Sebaliknya, `redirect()` adalah fungsi yang lebih fleksibel karena dapat menerima URL, nama view, atau objek model sebagai argumen. `redirect()` akan menentukan URL berdasarkan argumen yang diberikan dan secara internal menggunakan `HttpResponseRedirect()` untuk melakukan pengalihan.
 
