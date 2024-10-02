@@ -158,3 +158,62 @@ Berikut langkah-langkah yang saya lakukan secara mandiri untuk menyelesaikan tug
    - Setelah menyelesaikan seluruh fitur, saya melakukan migrasi dengan `python manage.py makemigrations` dan `python manage.py migrate`. Kemudian saya melakukan add, commit, dan push ke GitHub dengan perintah Git. Setelah itu, saya mengonfigurasi `settings.py` untuk deployment di PWS dengan menyesuaikan `ALLOWED_HOSTS` dan melakukan `git push pws main` untuk mempublikasikan aplikasi.
 
 Dengan langkah-langkah ini, saya berhasil mengimplementasikan autentikasi, session, cookie, serta pengelolaan produk dalam aplikasi Django secara mandiri, sesuai dengan checklist yang diberikan.
+
+## TUGAS 5
+### 1. **Jika terdapat beberapa CSS selector untuk suatu elemen HTML, jelaskan urutan prioritas pengambilan CSS selector tersebut!**
+CSS selector memiliki urutan prioritas atau "specificity" untuk menentukan gaya mana yang akan diterapkan ketika ada beberapa selector yang berlaku untuk elemen yang sama. Urutan prioritasnya adalah sebagai berikut:
+1. **Inline styles** (gaya langsung pada elemen HTML) memiliki prioritas tertinggi.
+2. **ID selectors** (#id) memiliki prioritas lebih tinggi dibandingkan class, pseudo-class, atau attribute selector.
+3. **Class selectors** (.class), pseudo-class (:hover), dan attribute selectors ([type="text"]).
+4. **Tag selectors** (h1, div, p) memiliki prioritas paling rendah.
+5. Jika dua selector memiliki specificities yang sama, gaya yang terakhir ditulis dalam CSS akan diterapkan.
+
+### 2.  **Mengapa responsive design menjadi konsep yang penting dalam pengembangan aplikasi web? Berikan contoh aplikasi yang sudah dan belum menerapkan responsive design!**
+Responsive design penting dalam pengembangan aplikasi web untuk memastikan tampilan dan fungsi yang optimal di berbagai perangkat dengan ukuran layar berbeda, seperti ponsel, tablet, dan desktop. Dengan menggunakan teknik seperti media queries, web dapat menyesuaikan tata letak dan konten sesuai dengan ukuran layar pengguna, sehingga meningkatkan pengalaman pengguna (UX). Contoh:
+- **Aplikasi yang menerapkan responsive design**: Twitter. Tampilan dan tata letaknya menyesuaikan dengan baik pada berbagai perangkat.
+- **Aplikasi yang belum menerapkan responsive design**: Beberapa situs lama yang hanya mendukung tampilan desktop, misalnya situs perusahaan kecil yang tidak diperbarui.
+
+### 3. **Jelaskan perbedaan antara margin, border, dan padding, serta cara untuk mengimplementasikan ketiga hal tersebut!**
+1. **Margin**: Ruang di luar elemen, antara elemen dengan elemen lainnya.
+   - Contoh implementasi: `margin: 20px;`
+2. **Border**: Garis yang mengelilingi elemen, berada di antara padding dan margin.
+   - Contoh implementasi: `border: 1px solid black;`
+3. **Padding**: Ruang di dalam elemen, antara konten elemen dan border elemen.
+   - Contoh implementasi: `padding: 10px;`
+
+Secara keseluruhan, **margin** mempengaruhi jarak luar, **border** adalah garis tepi elemen, dan **padding** menambahkan ruang di dalam elemen sebelum kontennya dimulai.
+
+### 4. **Jelaskan konsep flex box dan grid layout beserta kegunaannya!**
+1. **Flexbox**: Digunakan untuk mengatur tata letak elemen dalam satu dimensi (sejajar secara baris atau kolom). Flexbox sangat berguna untuk menyusun elemen secara responsif dengan kontrol yang lebih baik terhadap perataan dan distribusi ruang antar elemen.
+   - Contoh penggunaan: `display: flex;` untuk mengatur tata letak baris/kolom secara fleksibel.
+2. **Grid Layout**: Digunakan untuk tata letak dua dimensi (baris dan kolom), memungkinkan untuk membuat layout yang lebih kompleks seperti membagi halaman menjadi beberapa bagian yang saling berhubungan.
+   - Contoh penggunaan: `display: grid;` untuk membuat grid dua dimensi dengan baris dan kolom yang dapat disesuaikan.
+
+### 5. **Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial)**
+
+1. **Membuat Struktur Proyek Django**:
+   - Saya memulai proyek dengan perintah `django-admin startproject mental_health_tracker`, yang menghasilkan struktur folder dasar Django. Ini termasuk file `settings.py`, `urls.py`, dan direktori aplikasi.
+   
+2. **Membuat Aplikasi Utama**:
+   - Dengan perintah `python manage.py startapp main`, saya membuat aplikasi utama bernama `main`, yang akan menampung model, views, dan template terkait mood tracking.
+   
+3. **Menambahkan Model MoodEntry**:
+   - Di `models.py`, saya mendefinisikan model `MoodEntry` dengan field seperti `mood`, `feelings`, `mood_intensity`, serta `user` sebagai `ForeignKey` dari model `User`. Saya juga menghubungkan setiap entri mood dengan pengguna yang membuatnya.
+
+4. **Migrasi Database**:
+   - Setelah mendefinisikan model, saya menjalankan perintah `python manage.py makemigrations` dan `python manage.py migrate` untuk membuat tabel di database berdasarkan model yang sudah dibuat.
+
+5. **Membuat Views dan URL Routing**:
+   - Di dalam `views.py`, saya membuat berbagai fungsi view untuk menampilkan mood, mengedit, menambah, dan menghapus data mood. Saya juga menambahkan routing di `urls.py` untuk menghubungkan views dengan URL yang relevan.
+
+6. **Menerapkan Login, Logout, dan CSRF Token**:
+   - Untuk autentikasi, saya menggunakan `UserCreationForm` untuk registrasi, dan `AuthenticationForm` untuk login. Saya memastikan setiap form memiliki CSRF token untuk mencegah serangan CSRF.
+   
+7. **Menerapkan Cookie untuk Last Login**:
+   - Setelah login berhasil, saya menyimpan waktu terakhir login di dalam cookie `last_login`, dan menampilkan waktu ini di halaman utama.
+   
+8. **Testing Menggunakan Postman**:
+   - Saya menggunakan Postman untuk menguji apakah data dapat dikirim dan diterima dalam format XML dan JSON, serta memastikan endpoint bekerja dengan benar untuk GET dan POST requests.
+   
+9. **Menerapkan Deployment ke PWS**:
+   - Setelah memastikan aplikasi berfungsi dengan baik, saya mengubah file `settings.py` agar sesuai dengan deployment, dan melakukan push ke PWS dengan `git push pws main`.

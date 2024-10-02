@@ -1,36 +1,14 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SweetBites Bakery</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 20px;
-        }
-        .footer {
-            margin-top: 40px;
-            padding: 20px;
-            background-color: #f8f9fa;
-            text-align: center;
-            border-top: 1px solid #ddd;
-        }
-        .footer p {
-            margin: 5px 0;
-            font-size: 18px;
-        }
-    </style>
-</head>
-<body>
-    {% block content %}
-    {% endblock content %}
-    <div class="footer">
-        <h2>About the Developer</h2>
-        <p><strong>Name:</strong> Amirah Rizkita Setiadji</p>
-        <p><strong>Class:</strong> PBP B</p>
-    </div>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {% block meta %} {% endblock meta %}
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="{% static 'css/global.css' %}"/>
+  </head>
+  <body>
+    {% block content %} {% endblock content %}
+  </body>
 </html>

@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block meta %}
-<title>Create Product</title>
+<title>Edit Product</title>
 {% endblock meta %}
 
 {% block content %}
@@ -9,14 +9,14 @@
 
 <div class="flex flex-col min-h-screen bg-gray-100">
   <div class="container mx-auto px-4 py-8 mt-16 max-w-xl">
-    <h1 class="text-3xl font-bold text-center mb-8 text-[#E8647C]">Create Product</h1>
-  
+    <h1 class="text-3xl font-bold text-center mb-8 text-[#e8647c]">Edit Product</h1>
+
     <div class="bg-white shadow-md rounded-lg p-6 form-style">
       <form method="POST" class="space-y-6">
         {% csrf_token %}
         {% for field in form %}
           <div class="flex flex-col">
-            <label for="{{ field.id_for_label }}" class="mb-2 font-semibold text-[#843B62]">
+            <label for="{{ field.id_for_label }}" class="mb-2 font-semibold text-[#759392]">
               {{ field.label }}
             </label>
             <div class="w-full">
@@ -31,8 +31,8 @@
           </div>
         {% endfor %}
         <div class="flex justify-center mt-6">
-          <button type="submit" class="bg-[#E8647C] text-white font-semibold px-6 py-3 rounded-lg hover:bg-[#E8647C] transition duration-300 ease-in-out w-full">
-            Create Product
+          <button type="submit" class="bg-[#e8647c] text-white font-semibold px-6 py-3 rounded-lg hover:bg-[#e8647c] transition duration-300 ease-in-out w-full">
+            Edit Product
           </button>
         </div>
       </form>

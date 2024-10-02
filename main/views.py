@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.core import serializers
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, reverse
 from main.forms import ProductForm
 from .models import Product 
 from django.contrib.auth.forms import UserCreationForm
@@ -20,7 +20,7 @@ def product_list(request):
     context = {
         'name': request.user.username,  
         'name': 'Amirah Rizkita Setiadji', 
-        'class_name': 'PBP B',  
+        'class': 'PBP B',  
         'npm': '2306275235',
         'products': products,
         'last_login': request.COOKIES['last_login'],
@@ -89,3 +89,24 @@ def logout_user(request):
     response = HttpResponseRedirect(reverse('main:login'))
     response.delete_cookie('last_login')
     return response
+
+def edit_product(request, id):
+    # Get product entry based on id
+    product = Product.objects.get(pk=id)
+
+    # Set product entry as an instance of the form
+    form = ProductForm(request.POST or None, instance=product)
+
+    if form.is_valid() and request.method == "POST":
+        # Save form and redirect to product list page
+        form.save()
+        return HttpResponseRedirect(reverse('main:product_list'))
+
+    context = {'form': form}
+    return render(request, "edit_product.html", context)
+
+def delete_product(request, id):
+    product = Product.objects.get(pk=id)
+    product.delete()
+    return HttpResponseRedirect(reverse('main:product_list'))
+

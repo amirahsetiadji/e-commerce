@@ -3,6 +3,8 @@ from main.views import product_list, create_product, show_xml, show_json, show_x
 from main.views import register
 from main.views import login_user
 from main.views import logout_user
+from main.views import edit_product
+from main.views import delete_product
 
 app_name = 'main'
 
@@ -13,5 +15,7 @@ urlpatterns = [
     path('json/<str:id>/', show_json_by_id, name='show_json_by_id'),  # JSON berdasarkan ID
     path('register/', register, name='register'),
     path('login/', login_user, name='login'),
-      path('logout/', logout_user, name='logout'),
+    path('logout/', logout_user, name='logout'),
+    path('edit-product/<int:id>/', edit_product, name='edit_product'),  # Use integer for product ID
+    path('delete-product/<int:id>/', delete_product, name='delete_product'),
 ]
