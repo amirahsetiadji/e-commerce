@@ -191,29 +191,57 @@ Secara keseluruhan, **margin** mempengaruhi jarak luar, **border** adalah garis 
 
 ### 5. **Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial)**
 
-1. **Membuat Struktur Proyek Django**:
-   - Saya memulai proyek dengan perintah `django-admin startproject mental_health_tracker`, yang menghasilkan struktur folder dasar Django. Ini termasuk file `settings.py`, `urls.py`, dan direktori aplikasi.
-   
-2. **Membuat Aplikasi Utama**:
-   - Dengan perintah `python manage.py startapp main`, saya membuat aplikasi utama bernama `main`, yang akan menampung model, views, dan template terkait mood tracking.
-   
-3. **Menambahkan Model MoodEntry**:
-   - Di `models.py`, saya mendefinisikan model `MoodEntry` dengan field seperti `mood`, `feelings`, `mood_intensity`, serta `user` sebagai `ForeignKey` dari model `User`. Saya juga menghubungkan setiap entri mood dengan pengguna yang membuatnya.
-
-4. **Migrasi Database**:
+1. **Migrasi Database**:
    - Setelah mendefinisikan model, saya menjalankan perintah `python manage.py makemigrations` dan `python manage.py migrate` untuk membuat tabel di database berdasarkan model yang sudah dibuat.
 
-5. **Membuat Views dan URL Routing**:
-   - Di dalam `views.py`, saya membuat berbagai fungsi view untuk menampilkan mood, mengedit, menambah, dan menghapus data mood. Saya juga menambahkan routing di `urls.py` untuk menghubungkan views dengan URL yang relevan.
+2. **Membuat Views dan URL Routing**:
+   - Di dalam `views.py`, saya membuat berbagai fungsi view untuk menampilkan product, mengedit, menambah, dan menghapus data product. Saya juga menambahkan routing di `urls.py` untuk menghubungkan views dengan URL yang relevan.
 
-6. **Menerapkan Login, Logout, dan CSRF Token**:
+3. **Menerapkan Login, Logout, dan CSRF Token**:
    - Untuk autentikasi, saya menggunakan `UserCreationForm` untuk registrasi, dan `AuthenticationForm` untuk login. Saya memastikan setiap form memiliki CSRF token untuk mencegah serangan CSRF.
    
-7. **Menerapkan Cookie untuk Last Login**:
+4. **Menerapkan Cookie untuk Last Login**:
    - Setelah login berhasil, saya menyimpan waktu terakhir login di dalam cookie `last_login`, dan menampilkan waktu ini di halaman utama.
    
-8. **Testing Menggunakan Postman**:
+5. **Testing Menggunakan Postman**:
    - Saya menggunakan Postman untuk menguji apakah data dapat dikirim dan diterima dalam format XML dan JSON, serta memastikan endpoint bekerja dengan benar untuk GET dan POST requests.
    
-9. **Menerapkan Deployment ke PWS**:
-   - Setelah memastikan aplikasi berfungsi dengan baik, saya mengubah file `settings.py` agar sesuai dengan deployment, dan melakukan push ke PWS dengan `git push pws main`.
+## TUGAS 6
+### 1. Jelaskan manfaat dari penggunaan JavaScript dalam pengembangan aplikasi web!
+
+JavaScript adalah bahasa pemrograman yang digunakan secara luas dalam pengembangan aplikasi web karena bersifat **client-side**, memungkinkan interaktivitas yang lebih baik antara pengguna dan tampilan antarmuka. Manfaat utama JavaScript adalah:
+- **Responsiveness**: Membuat halaman web lebih interaktif dengan memperbarui konten secara dinamis tanpa perlu me-refresh seluruh halaman.
+- **Rich User Experience**: Penggunaan JavaScript memungkinkan fitur-fitur seperti animasi, drag-and-drop, dan validasi form di sisi klien.
+- **Kompatibilitas yang Luas**: JavaScript dapat dijalankan di berbagai platform dan browser tanpa memerlukan setup tambahan.
+  
+### 2.  Jelaskan fungsi dari penggunaan `await` ketika kita menggunakan `fetch()` Apa yang akan terjadi jika kita tidak menggunakan `await`?
+
+`await` digunakan untuk menunggu hasil dari promise yang dikembalikan oleh fungsi asynchronous seperti `fetch()`. Dengan `await`, eksekusi kode akan berhenti sementara sampai proses `fetch()` selesai, sehingga kita dapat memastikan bahwa data telah diterima sebelum melanjutkan ke kode berikutnya. Jika `await` tidak digunakan, kode akan dieksekusi tanpa menunggu `fetch()` selesai, sehingga dapat menyebabkan data yang diharapkan belum tersedia ketika digunakan, yang bisa menimbulkan error atau hasil yang tidak diinginkan.
+
+### 3. Mengapa kita perlu menggunakan decorator `csrf_exempt` pada view yang akan digunakan untuk AJAX POST?
+
+`csrf_exempt` digunakan untuk menonaktifkan proteksi CSRF (Cross-Site Request Forgery) pada view tertentu. Ini berguna ketika kita melakukan **AJAX POST request** yang tidak mengirimkan token CSRF, yang mana secara default Django mengharapkan token ini sebagai bagian dari permintaan POST. Namun, penting untuk menggunakan ini dengan hati-hati, hanya pada request yang aman, untuk menghindari celah keamanan.
+
+###  4. Pada tutorial PBP minggu ini, pembersihan data input pengguna dilakukan di belakang (backend) juga. Mengapa hal tersebut tidak dilakukan di frontend saja?
+
+Melakukan pembersihan data input di backend memberikan lapisan keamanan tambahan karena tidak semua input pengguna dapat dipercaya, bahkan ketika validasi dilakukan di frontend. **Frontend validation** bisa diabaikan atau dimanipulasi oleh pengguna yang jahat, misalnya dengan mengubah JavaScript di browser mereka. Dengan pembersihan di backend, kita memastikan bahwa data yang masuk ke database adalah data yang telah tervalidasi dan aman, sehingga menghindari potensi serangan seperti SQL Injection atau XSS (Cross-Site Scripting).
+
+### 5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial)!
+
+1. **Menambahkan Pesan Error Pada Login**  
+   Pesan error ditampilkan jika username atau password salah saat login. Pesan ini membantu pengguna mengetahui kesalahan yang terjadi tanpa harus reload halaman.
+
+2. **Menambahkan Product dengan AJAX**  
+   AJAX memungkinkan penambahan data secara asynchronous tanpa reload. Hal ini meningkatkan pengalaman pengguna dengan mempercepat proses input data ke server.
+
+3. **Routing untuk AJAX**  
+   URL routing diatur agar fungsi AJAX dapat dijalankan saat pengguna mengirim permintaan POST. Hal ini mempermudah komunikasi antara server dan frontend.
+
+4. **Menampilkan Data dengan Fetch API**  
+   Fetch API digunakan untuk mengambil data dari server secara asynchronous dan menampilkan daftar produk secara dinamis di halaman web tanpa reload.
+
+5. **Modal Form untuk Penambahan Produk**  
+   Form modal memudahkan pengguna untuk menambah produk baru. Dengan menggunakan Tailwind CSS untuk modal, tampilan form terlihat lebih modern dan dinamis.
+
+6. **Keamanan dari XSS**  
+   DOMPurify digunakan untuk membersihkan input data dari potensi serangan XSS. Hal ini memastikan aplikasi tetap aman dari serangan yang berusaha mengeksekusi kode berbahaya di browser pengguna.

@@ -12,18 +12,19 @@ from django.contrib.auth.decorators import login_required
 import datetime
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_POST
+from django.utils.html import strip_tags
 
 @login_required(login_url='/login')
 def product_list(request):
-    products = Product.objects.filter(user=request.user)
 
     context = {
-        'name': request.user.username,  
-        'name': 'Amirah Rizkita Setiadji', 
-        'class': 'PBP B',  
-        'npm': '2306275235',
-        'products': products,
-        'last_login': request.COOKIES['last_login'],
+    'name': request.user.username,
+    'name': 'Amirah Rizkita Setiadji',
+    'class': 'PBP B',  
+    'npm': '2306275235',
+    'last_login': request.COOKIES['last_login'],
     }
 
     return render(request, "main.html", context)
@@ -41,19 +42,19 @@ def create_product(request):
     return render(request, "create_product.html", context)
 
 def show_xml(request):
-    data = Product.objects.all() 
+    data = Product.objects.filter(user=request.user)
     return HttpResponse(serializers.serialize("xml", data), content_type="application/xml")
 
 def show_json(request):
-    data = Product.objects.all() 
+    data = Product.objects.filter(user=request.user)
     return HttpResponse(serializers.serialize("json", data), content_type="application/json")
 
 def show_xml_by_id(request, id):
-    data = Product.objects.filter(pk=id)
+    data = Product.objects.filter(user=request.user)
     return HttpResponse(serializers.serialize("xml", data), content_type="application/xml")
 
 def show_json_by_id(request, id):
-    data = Product.objects.filter(pk=id)
+    data = Product.objects.filter(user=request.user)
     return HttpResponse(serializers.serialize("json", data), content_type="application/json")
 
 def register(request):
@@ -78,6 +79,8 @@ def login_user(request):
         response = HttpResponseRedirect(reverse("main:product_list"))
         response.set_cookie('last_login', str(datetime.datetime.now()))
         return response
+      else:
+        messages.error(request, "Invalid username or password. Please try again.")
 
    else:
       form = AuthenticationForm(request)
@@ -91,14 +94,11 @@ def logout_user(request):
     return response
 
 def edit_product(request, id):
-    # Get product entry based on id
     product = Product.objects.get(pk=id)
 
-    # Set product entry as an instance of the form
     form = ProductForm(request.POST or None, instance=product)
 
     if form.is_valid() and request.method == "POST":
-        # Save form and redirect to product list page
         form.save()
         return HttpResponseRedirect(reverse('main:product_list'))
 
@@ -110,3 +110,28 @@ def delete_product(request, id):
     product.delete()
     return HttpResponseRedirect(reverse('main:product_list'))
 
+@csrf_exempt
+@require_POST
+def add_product_ajax(request):
+    name = strip_tags(request.POST.get("name"))  
+    description = strip_tags(request.POST.get("description"))  
+    ingredients = strip_tags(request.POST.get("ingredients")) 
+    allergen_warning = strip_tags(request.POST.get("allergen_warning"))  
+    price = request.POST.get("price")  
+    stock = request.POST.get("stock")  
+    customizable = request.POST.get("customizable")  
+    user = request.user  
+
+    new_product = Product(
+        name=name,
+        description=description,
+        ingredients=ingredients,
+        allergen_warning=allergen_warning,
+        price=price,
+        stock=stock,
+        customizable=customizable,
+        user=user
+    )
+    new_product.save()
+
+    return HttpResponse(b"CREATED", status=201)
