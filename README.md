@@ -245,3 +245,5 @@ Melakukan pembersihan data input di backend memberikan lapisan keamanan tambahan
 
 6. **Keamanan dari XSS**  
    DOMPurify digunakan untuk membersihkan input data dari potensi serangan XSS. Hal ini memastikan aplikasi tetap aman dari serangan yang berusaha mengeksekusi kode berbahaya di browser pengguna.
+
+   
